@@ -4,9 +4,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 1. What was broken when you started?
 
-- What did the game look like the first time you ran it?
+- What did the game look like the first time you ran it? 
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
+  
+The first time I ran the game, the guessing logic was not outputting the correct higher/lower hint. When I guessed an answer lower than the secret number, it would tell me to go lower. Same thing happened but with higher number resulting in a higher hint. The hints were backwards and inconsistent. Also, the game would generate a secret number outside the selected difficulty range. When the difficulty was at a smaller range (Easy), it would sometimes still pick a secret number that was outside that range.
+
 
 **Bug Reproduction Log**
 
@@ -14,9 +17,9 @@ Document at least 3 bugs you found. Add rows as needed.
 
 | Input | Expected Behavior | Actual Behavior | Console Output / Error |
 |-------|-------------------|-----------------|------------------------|
-| | | | |
-| | | | |
-| | | | |
+| Guess 60, secret 50 | It should display "Too High" and "Go LOWER" | The Higher/Lower hints are incorrect | No console output / error |
+| Start a new game on a difficulty with a specific range | Secret should be generated within the selected difficulty range | The game used a fixed range of 1 to 100 across all difficulty ranges so the secret number was out of the selected range | No console output / error |
+| Secret 91, guessed 92 and 90 | 92 should say "Go LOWER" and 90 should say "Go HIGHER"| Both guesses would output "Go HIGHER" | No console output / error |
 
 ---
 
@@ -26,6 +29,7 @@ Document at least 3 bugs you found. Add rows as needed.
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion you did not accept as written (including what the AI suggested, why you rejected or changed it, and how you verified your version). It does not have to be a suggestion that was wrong: over-engineered, out of scope, harder to read, or a poor fit for this codebase all count.
 
+I used Claude as an AI tool to assist me on this project. AI helped me get a depper understanding on the bugs, how to refactor the game logic, and design tests. For example, one correct AI suggestion was to keep the secret number as an integer instead of converting the attempts to a string. I was able to verify the result because before the fix, if I gave a number higher than secret number, it would output "Go HIGHER." But after the fix, I tested it again. The secret number was 91 and when testing a guess of 92, the game correctly output "Go LOWER," and a guess of 90 correctly outputted "Go HIGHER." However, one suggestion I did not accept was to replace the entire logic_utils.py file into a simplified version. I rejected it because the file contained an outline of functions that were already there and replacing unrelated starter code was not neccessary. I verified my version by keeping my original structure and running the test with python3 -m pytest. All three of the test passes. Also, I ran the Streamlist app and made sure the game was outputting the correct behavior.
 ---
 
 ## 3. Debugging and testing your fixes
@@ -35,6 +39,7 @@ Document at least 3 bugs you found. Add rows as needed.
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
+I decided a bug was fixed by checking the test and playing around the actual Streamlit game. After updating the check_guess() function with the corrct higher/lower logic, I ran pytest to make sure that all three tests from test_game_logic passed. The tests passed and it showed me that the higher/lower logic was working correctly, but I still needed to test the live game because the tests aren't able to catch all bugs, like the secret number changing into a string. So, I then ran streamlist run app.py and manually tested the game. AI helped me understand why the tests initally failed and guided me on how to test the higher/lower outcomes after fixing the bug.
 ---
 
 ## 4. What did you learn about Streamlit and state?
