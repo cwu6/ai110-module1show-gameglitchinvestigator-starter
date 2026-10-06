@@ -35,8 +35,8 @@ def check_guess(guess, secret):
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+            return "Too High", "📈 Go LOWER!" # FIXME: Logic breaks here
+        return "Too Low", "📉 Go HIGHER!"   # FIXME: Logic breaks here
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):

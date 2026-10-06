@@ -35,7 +35,7 @@ I found bugs with the higher/lower hints, the secret number not alwas using the 
 
 - [ ] Explain what fixes you applied.
 
-I corrected the higher/lower comparison logic, so then the game tells the user to go in the correct direction based on their guess. I just switched the output messages since they were flipped. I also changed the code to generate the secret number within the selected difficulty range, low to high. Originally, all the difficulty ranges were set from 1 to 100. I also kept the secret number as an integer for every guess, so that the game uses the same data type when comparing guesses to the secret number. Originally, for every even number attempt, it would be converted to a string which led to incorrect comparisons. Moreover, I moved the guessing logic into logic_utils.py to seprate the game logic from the Streamlist interface and added tests to verify the guessing outcomes.
+I corrected the higher/lower comparison logic, so then the game tells the user to go in the correct direction based on their guess. I just switched the output messages since they were flipped. I also changed the code to generate the secret number within the selected difficulty range, low to high. Originally, the game would always generate the secret number from 1 to 100, even when the player selected Easy or Hard. I also kept the secret number as an integer for every guess, so that the game uses the same data type when comparing guesses to the secret number. Originally, for every even number attempt, it would be converted to a string which led to incorrect comparisons. Moreover, I moved the guessing logic into logic_utils.py to seprate the game logic from the Streamlist interface and added tests to verify the guessing outcomes.
 
 
 ## 📸 Demo Walkthrough
