@@ -39,7 +39,7 @@ I used Claude as an AI tool to assist me on this project. AI helped me get a dep
   and what it showed you about your code.
 - Did AI help you design or understand any tests? How?
 
-I decided a bug was fixed by checking the test and playing around the actual Streamlit game. After updating the check_guess() function with the corrct higher/lower logic, I ran pytest to make sure that all three tests from test_game_logic passed. The tests passed and it showed me that the higher/lower logic was working correctly, but I still needed to test the live game because the tests aren't able to catch all bugs, like the secret number changing into a string. So, I then ran streamlist run app.py and manually tested the game. AI helped me understand why the tests initally failed and guided me on how to test the higher/lower outcomes after fixing the bug.
+I decided a bug was fixed by checking the test and playing around the actual Streamlit game. After updating the check_guess() function with the corrct higher/lower logic, I ran pytest to make sure that all three tests from test_game_logic passed. Originally, the test stored the entire check_guess() return value in result, but it was changed to separate the outcome and the message so that the tests could correctly check the result. The tests passed and it showed me that the higher/lower logic was working correctly, but I still needed to test the live game because the tests aren't able to catch all bugs, like the secret number changing into a string. So, I then ran streamlist run app.py and manually tested the game. AI helped me understand why the tests initally failed and guided me on how to test the higher/lower outcomes after fixing the bug.
 ---
 
 ## 4. What did you learn about Streamlit and state?
