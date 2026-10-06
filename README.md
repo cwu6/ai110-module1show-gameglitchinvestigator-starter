@@ -26,18 +26,28 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+
+The game is a number guessing game where the player selects a difficulty range and tries to guess the randomly generated secret number from that range. The game diaplays higher or lower hints to help the user get closer to that secret number. 
+
 - [ ] Detail which bugs you found.
+
+I found bugs with the higher/lower hints, the secret number not alwas using the selected difficulty range, and the secret number being changed from an integer to a string during some guesses. All these bugs led to the game outputting the incorrect feedback for the user. The higher/lower bug led the user in the wrong direction as the correct message output for higher and lower were switched. The diificulty range bug could cause a game to generate a secret number outside the range of the selected difficulty. Additionally, the integer to string bug caused the game to compare the wrong data types, which lead to incorret comparisons.
+
 - [ ] Explain what fixes you applied.
+
+I corrected the higher/lower comparison logic, so then the game tells the user to go in the correct direction based on their guess. I just switched the output messages since they were flipped. I also changed the code to generate the secret number within the selected difficulty range, low to high. Originally, all the difficulty ranges were set from 1 to 100. I also kept the secret number as an integer for every guess, so that the game uses the same data type when comparing guesses to the secret number. Originally, for every even number attempt, it would be converted to a string which led to incorrect comparisons. Moreover, I moved the guessing logic into logic_utils.py to seprate the game logic from the Streamlist interface and added tests to verify the guessing outcomes.
+
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User starts a Normal difficulty game 
+2. User enters a guess of 40, and the game displays "Go HIGHER!"
+3. User enters a guess of 60, and the game displays "Go LOWER!" 
+4. User enters a guess of 50, and the game displays "Correct!"
+5. Score updates correctly after each guess
+6. Game ends after the correct guess
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
@@ -48,6 +58,16 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 # pytest tests/
 # ========================= X passed in 0.XXs =========================
 ```
+
+================ test session starts ================
+platform darwin -- Python 3.14.7, pytest-9.1.1, pluggy-1.6.0
+rootdir: /Users/chlxe/ai110-module1show-gameglitchinvestigator-starter-1
+plugins: anyio-4.15.1
+collected 3 items                                   
+
+tests/test_game_logic.py ...                  [100%]
+
+================= 3 passed in 0.01s =================
 
 ## 🚀 Stretch Features
 
